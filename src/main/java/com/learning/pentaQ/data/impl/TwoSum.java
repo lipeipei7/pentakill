@@ -1,4 +1,6 @@
-package com.learning.pentaQ.data;
+package com.learning.pentaQ.data.impl;
+
+import com.learning.pentaQ.data.Puzzle;
 
 import java.util.Arrays;
 
@@ -6,7 +8,7 @@ import java.util.Arrays;
      2 -> 0
      7 -> 1
 */
-public class TwoSum implements InterfA {
+public class TwoSum implements Puzzle {
     /*暴力解法*/
     //time: O(n^2)
     //space: O(1)
@@ -50,9 +52,9 @@ public class TwoSum implements InterfA {
     }
 
     @Override
-    public void run() {
+    public String run() {
         TwoSum solution = new TwoSum();
         int[] arr = solution.twoSum2(new int[]{1, 4, 3, 5}, 5);
-        System.out.println(Arrays.toString(arr));
+        return Arrays.toString(arr);
     }
 }

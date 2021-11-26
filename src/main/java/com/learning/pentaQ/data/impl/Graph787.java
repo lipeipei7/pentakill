@@ -1,4 +1,4 @@
-package com.learning.pentaQ.data;
+package com.learning.pentaQ.data.impl;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
