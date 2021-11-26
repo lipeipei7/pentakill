@@ -1,4 +1,4 @@
-//单行注释
+package com.learning.pentaQ.data;//单行注释
 /*
 * src: 资源
 * main: 主要
@@ -10,7 +10,7 @@
 *   - protected: 保护
 *   - private: 私密
 * class: 类
-* Puzzle: 题 (大写P)
+* com.learning.pentaQ.data.Puzzle: 题 (大写P)
 * int: integer - 整数
 * String: 字符串 (大写S)
 * char: 字符

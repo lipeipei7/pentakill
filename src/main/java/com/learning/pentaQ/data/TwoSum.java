@@ -1,3 +1,5 @@
+package com.learning.pentaQ.data;
+
 import java.util.Arrays;
 
 /*
