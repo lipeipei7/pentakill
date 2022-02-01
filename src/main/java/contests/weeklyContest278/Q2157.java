@@ -1,4 +1,4 @@
-package weeklyContest278;
+package contests.weeklyContest278;
 
 import java.util.Arrays;
 import java.util.Comparator;

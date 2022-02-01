@@ -1,4 +1,4 @@
-package weeklyContest278;
+package contests.weeklyContest278;
 
 /*
 * https://leetcode.com/contest/weekly-contest-278/problems/find-substring-with-given-hash-value/
