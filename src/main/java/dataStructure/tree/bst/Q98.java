@@ -1,6 +1,6 @@
-package dataStructures.tree.bst;
+package dataStructure.tree.bst;
 
-import dataStructures.tree.BST;
+import dataStructure.tree.BST;
 
 /*
 * https://leetcode.com/problems/validate-binary-search-tree/

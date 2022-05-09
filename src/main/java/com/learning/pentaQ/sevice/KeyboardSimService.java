@@ -31,17 +31,23 @@ public class KeyboardSimService {
         robot.keyRelease(input);
     }
 
+    private static void printDuration(ZonedDateTime start) {
+        System.out.println(ZonedDateTime.now().toString() + Duration.between(start, ZonedDateTime.now()));
+    }
 
     public static void main(String[] args) {
         KeyboardSimService s = new KeyboardSimService();
         s.init();
         ZonedDateTime d = ZonedDateTime.now();
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            System.out.println(ZonedDateTime.now().toString() + Duration.between(d, ZonedDateTime.now()));
+            printDuration(d);
         }));
 
-        for (int i = 0; i < 720; i++) {
+        for (int i = 1; i < 1024; i++) {
             s.press();
+            if (i % 120 == 0) {
+                printDuration(d);
+            }
         }
     }
 }
