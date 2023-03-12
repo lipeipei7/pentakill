@@ -66,10 +66,10 @@ public class Q102 extends BST {
     }
 
     public static void main(String[] args) {
-        Q102 solution = new Q102();
+        Q102 solution;
         //Input: root = [3,9,20,null,null,15,7]
         //Output: [[3],[9,20],[15,7]]
-        TreeNode root = BST.parseArray(new int[]{3,9,20, TreeConst.Null.getCode(), TreeConst.Null.getCode(), 15, 7});
-        System.out.println(solution.levelOrder(root));
+        solution = BST.parseArray(new int[]{3,9,20, TreeConst.Null.getCode(), TreeConst.Null.getCode(), 15, 7}, Q102.class);
+        System.out.println(solution.levelOrder(solution.getRoot()));
     }
 }

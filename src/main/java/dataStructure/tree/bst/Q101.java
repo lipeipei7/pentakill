@@ -45,16 +45,16 @@ public class Q101 extends BST {
     }
 
     public static void main(String[] args) {
-        Q101 solution = new Q101();
+        Q101 solution;
         //Input: root = [1,2,2,3,4,4,3]
         //Output: true
-        TreeNode root = BST.parseArray(new int[]{1,2,2,3,4,4,3});
-        System.out.println(solution.isSymmetric(root));
+        solution = BST.parseArray(new int[]{1,2,2,3,4,4,3}, Q101.class);
+        System.out.println(solution.isSymmetric(solution.getRoot()));
 
         //Input: root = [1,2,2,null,3,null,3]
         //Output: false
-        root = BST.parseArray(new int[]{1,2,2,TreeConst.Null.getCode(),3,TreeConst.Null.getCode(),3});
-        System.out.println(solution.isSymmetric(root));
+        solution = BST.parseArray(new int[]{1,2,2,TreeConst.Null.getCode(),3,TreeConst.Null.getCode(),3}, Q101.class);
+        System.out.println(solution.isSymmetric(solution.getRoot()));
     }
 
 }
