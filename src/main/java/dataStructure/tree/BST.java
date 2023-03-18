@@ -88,6 +88,77 @@ public abstract class BST {
         return node;
     }
 
+    public TreeNode insert(int val) {
+        return insertRecursive(this.root, val);
+    }
+
+    private TreeNode insertRecursive(TreeNode root, int val) {
+        if (root == null) {
+            return new TreeNode(val);
+        }
+
+        if (val < root.val) {
+            root.left = insertRecursive(root.left, val);
+        } else if (val > root.val) {
+            root.right = insertRecursive(root.right, val);
+        } else {
+            return root;
+        }
+
+        return root;
+    }
+
+    public TreeNode find(int val) {
+        return findRecursive(this.root, val);
+    }
+
+    private TreeNode findRecursive(TreeNode root, int val) {
+        if (root == null) {
+            return null;
+        }
+
+        if (val < root.val) {
+            return findRecursive(root.left, val);
+        } else if (val > root.val) {
+            return findRecursive(root.right, val);
+        } else {
+            return root;
+        }
+    }
+
+    public TreeNode delete(int val) {
+        return deleteRecursive(this.root, val);
+    }
+
+    private TreeNode deleteRecursive(TreeNode root, int val) {
+        if (root == null) {
+            return null;
+        }
+
+        if (val < root.val) {
+            root.left = deleteRecursive(root.left, val);
+        } else if (val > root.val) {
+            root.right = deleteRecursive(root.right, val);
+        } else {
+            if (root.left == null) {
+                return root.right;
+            } else if (root.right == null) {
+                return root.left;
+            }
+
+            root.val = findMinRecursive(root.right);
+            root.right = deleteRecursive(root.right, root.val);
+        }
+
+        return root;
+    }
+
+    private int findMinRecursive(TreeNode root) {
+        return root.left == null ?
+                root.val :
+                findMinRecursive(root.left);
+    }
+
     public boolean isValidBST(TreeNode root) {
         return true;
     }
