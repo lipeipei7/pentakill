@@ -20,7 +20,7 @@ public class KeyboardSimService {
     }
 
     public void press() {
-        robot.delay(random.nextInt(5000, 15000));
+        robot.delay(random.nextInt(30000, 45000));
         keyType(KeyEvent.VK_SPACE);
         keyType(KeyEvent.VK_SPACE);
         keyType(KeyEvent.VK_SPACE);
