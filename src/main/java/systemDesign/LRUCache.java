@@ -1,45 +1,72 @@
 package systemDesign;
 
+import java.util.Deque;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
+/*
+    205. Implement LRU Cache
+    Implement a least recently used cache.
+    It should provide set(), get() operations.
+    If not exists, return null (Java), false (C++), -1(Python).
+*/
+class LRUCache<K, V> {
 
-class LRUCache {
-    private Map<Integer, DoublyList.Node> map;
-    private DoublyList doublyList;
+    public static class Node<K, V> {
+        public K key;
+        public V value;
+        public Node<K, V> prev;
+        public Node<K, V> next;
+        public Node(K key, V value) {
+            this.key = key;
+            this.value = value;
+        }
+    }
+
+    private Map<K, Node<K, V>> keyMap;
     private int capacity;
 
+    @Deprecated
+    private DoublyList doublyList;
+    private Deque<Node<K, V>> deque;
+
     public LRUCache(int capacity) {
-        map = new HashMap<>();
-        doublyList = new DoublyList();
+        keyMap = new HashMap<>();
+        deque = new LinkedList<>();
         this.capacity = capacity;
     }
 
-    public int get(int key) {
-        if (!map.containsKey(key)) {
-            return -1;
+    public V get(K key) {
+        if (!keyMap.containsKey(key)) {
+            return null;
         }
-        DoublyList.Node node = map.get(key);
-        doublyList.remove(node);
-        doublyList.add(node);
+        Node<K, V> node = keyMap.get(key);
+        deque.remove(node);
+        deque.offerLast(node);
         return node.value;
     }
 
-    public void put(int key, int value) {
-        if (map.containsKey(key)) {
-            DoublyList.Node node = map.get(key);
+    public void set(K key, V value) {
+        //update
+        if (keyMap.containsKey(key)) {
+            Node<K, V> node = keyMap.get(key);
             node.value = value;
-            doublyList.remove(node);
-            doublyList.add(node);
-        } else if (map.size() == capacity) {
-            DoublyList.Node node = new DoublyList.Node(key, value);
-            map.put(key, node);
-            doublyList.add(node);
-            map.remove(doublyList.head.key);
-            doublyList.remove(doublyList.head);
-        } else {
-            DoublyList.Node node = new DoublyList.Node(key, value);
-            map.put(key, node);
-            doublyList.add(node);
+            deque.remove(node);
+            deque.offerLast(node);
+        }
+        //insert at capacity
+        else if (keyMap.size() == capacity) {
+            Node<K, V> node = new Node(key, value);
+            keyMap.put(key, node);
+            deque.offerLast(node);
+            Node<K, V> head = deque.pollFirst();
+            keyMap.remove(head.key);
+        }
+        // insert
+        else {
+            Node<K, V> node = new Node(key, value);
+            keyMap.put(key, node);
+            deque.offerLast(node);
         }
     }
 
@@ -59,7 +86,7 @@ class LRUCache {
         }
 
         public void remove(Node node) {
-            if (head == tail) {
+            if (head == tail && head == node) {
                 head = null;
                 tail = null;
             } else if (head == node) {
@@ -71,17 +98,6 @@ class LRUCache {
             } else {
                 node.prev.next = node.next;
                 node.next.prev = node.prev;
-            }
-        }
-
-        public static class Node {
-            public int key;
-            public int value;
-            public Node prev;
-            public Node next;
-            public Node(int key, int value) {
-                this.key = key;
-                this.value = value;
             }
         }
     }
