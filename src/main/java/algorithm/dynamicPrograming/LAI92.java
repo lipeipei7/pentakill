@@ -1,5 +1,10 @@
 package algorithm.dynamicPrograming;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 /*
     92. Buy Stock I
     Given an array of positive integers representing a stock’s price on each day.
