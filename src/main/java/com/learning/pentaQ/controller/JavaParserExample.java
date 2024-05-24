@@ -90,7 +90,7 @@ public class JavaParserExample {
                     ),
                     fieldDeclaration.getVariable(0).getNameAsString()
             );
-            fieldBuilder.addModifiers(Modifier.PRIVATE);
+            fieldBuilder.addModifiers(Modifier.PRIVATE);   
             classBuilder.addField(fieldBuilder.build());
         }
 
@@ -130,3 +130,4 @@ public class JavaParserExample {
 
 
 }
+
