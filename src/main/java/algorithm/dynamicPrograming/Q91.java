@@ -57,4 +57,10 @@ public class Q91 {
 
         return dp[n];
     }
+
+    public static void main(String[] args) {
+        Q91 solution = new Q91();
+        int res = solution.numDecodings("1111");
+        System.out.println(res);
+    }
 }

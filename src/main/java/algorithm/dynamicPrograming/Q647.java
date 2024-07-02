@@ -33,4 +33,40 @@ public class Q647 {
 
         return count;
     }
+
+
+    public int countSubstrings2(String s) {
+        int n = s.length(), count = s.length();
+        boolean[][] dp = new boolean[n][n];
+        for (int i = 0; i < n; i++) {
+            dp[i][i] = true;
+        }
+
+        for (int len = 2; len <= n; len++) {
+            for (int i = 0, j = 0; i < n; i++) {
+                j = i + len - 1;
+                if (j >= n) {
+                    break;
+                }
+
+                if (s.charAt(i) == s.charAt(j) && (j - i <= 2 || dp[i + 1][j - 1])) {
+                    dp[i][j] = true;
+                    count++;
+                }
+            }
+
+        }
+
+        return count;
+    }
+
+
+    public static void main(String[] args) {
+        Q647 solution = new Q647();
+        int res = solution.countSubstrings2("fdsklf");
+        assert res == 6;
+
+        res = solution.countSubstrings2("aaa");
+        assert res == 6;
+    }
 }

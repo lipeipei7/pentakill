@@ -43,13 +43,13 @@ public class Q139 {
             String curr = s.substring(0, i + 1);
             if (dict.contains(curr)) {
                 if (wordBreakDP(dict, dp, s.substring(i + 1))) {
-                    dp.put(s, true);
+                    dp.put(s, true); //after return from bottom, mark entire string
                     return true;
                 }
             }
         }
 
-        dp.put(s, false);
+        dp.put(s, false); //mark entire string
         return false;
     }
 }

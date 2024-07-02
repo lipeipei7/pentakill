@@ -46,6 +46,7 @@ public class Q322 {
 
     public static void main(String[] args) {
         Q322 solution = new Q322();
-        solution.coinChange(new int[]{186,419,83,408}, 6249);
+        //solution.coinChange(new int[]{186,419,83,408}, 6249);
+        solution.coinChange(new int[]{1, 2, 5}, 11);
     }
 }

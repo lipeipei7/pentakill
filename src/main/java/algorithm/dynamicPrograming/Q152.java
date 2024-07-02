@@ -26,12 +26,17 @@ public class Q152 {
             int minTemp = minProd * nums[i];
             int maxTemp = maxProd * nums[i];
 
-            minProd = Math.min(nums[i], Math.min(minTemp, maxTemp));
+            minProd = Math.min(nums[i], Math.min(minTemp, maxTemp)); //keep min negative number
             maxProd = Math.max(nums[i], Math.max(minTemp, maxTemp));
 
             res = Math.max(res, maxProd);
         }
 
         return res;
+    }
+
+    public static void main(String[] args) {
+        Q152 solution = new Q152();
+        System.out.println(solution.maxProduct(new int[]{2, -3, -4}));
     }
 }

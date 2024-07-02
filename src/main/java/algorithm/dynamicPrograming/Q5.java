@@ -1,5 +1,7 @@
 package algorithm.dynamicPrograming;
 
+import java.util.Arrays;
+
 public class Q5 {
 
 
@@ -12,7 +14,7 @@ public class Q5 {
         int maxLen = 1;
         int begin = 0;
         // dp[i][j] 表示 s[i..j] 是否是回文串
-        boolean[][] dp = new boolean[len][len];
+        Boolean[][] dp = new Boolean[len][len];
         // 初始化：所有长度为 1 的子串都是回文串
         for (int i = 0; i < len; i++) {
             dp[i][i] = true;
@@ -37,6 +39,7 @@ public class Q5 {
                     if (j - i < 3) {
                         dp[i][j] = true;
                     } else {
+                        //even will look up for previous even, likewise for odd
                         dp[i][j] = dp[i + 1][j - 1];
                     }
                 }
@@ -46,13 +49,47 @@ public class Q5 {
                     maxLen = j - i + 1;
                     begin = i;
                 }
+                System.out.println(Arrays.deepToString(dp).replaceAll("], ", "],\n "));
             }
         }
         return s.substring(begin, begin + maxLen);
     }
 
+    public String longestPalindromeDP2(String s) {
+        if (s == null || s.length() < 2) {
+            return s;
+        }
+
+        int maxLen = 1, startIdx = 0, n = s.length();
+        Boolean[][] dp = new Boolean[n][n];
+        for (int i = 0; i < n; i++) {
+            dp[i][i] = true;
+        }
+
+        for (int len = 2; len <= n; len++) {
+            for (int i = 0, j = 0; i < n; i++) {
+                j = i + len - 1;
+                if (j >= n) {
+                    break;
+                }
+
+                if (s.charAt(i) == s.charAt(j) && (j - i <= 2 || dp[i + 1][j - 1])) {
+                    dp[i][j] = true;
+                }
+
+                if (dp[i][j] && len > maxLen) {
+                    maxLen = len;
+                    startIdx = i;
+                }
+            }
+
+        }
+
+        return s.substring(startIdx, startIdx + maxLen);
+    }
+
     public static void main(String[] args) {
         Q5 solution = new Q5();
-        System.out.println(solution.longestPalindromeDP("bbab"));
+        System.out.println(solution.longestPalindromeDP("abba"));
     }
 }
